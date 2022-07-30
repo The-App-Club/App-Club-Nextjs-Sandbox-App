@@ -102,6 +102,8 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
           /* position: absolute;
           top: 0;
           right: 8px; */
+          position: relative;
+          z-index: 1;
           display: flex;
           align-items: center;
           justify-content: center;
