@@ -5,7 +5,7 @@ import {useRouter} from 'next/router';
 import ThemeToggle from './ThemeToggle';
 import {Nav} from './Nav';
 
-const Header = ({tik, outerContainerDomRef}) => {
+const Header = ({tik, outerContainerDomRef, darkMode}) => {
   const router = useRouter();
   return (
     <header
@@ -86,7 +86,7 @@ const Header = ({tik, outerContainerDomRef}) => {
           }
         `}
       >
-        <ThemeToggle />
+        <ThemeToggle darkMode={darkMode} />
       </div>
     </header>
   );

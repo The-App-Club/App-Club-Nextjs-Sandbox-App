@@ -1,17 +1,14 @@
 import {css, cx} from '@emotion/css';
-import useDarkMode from 'use-dark-mode';
 import {MdWbSunny, MdNightlightRound} from 'react-icons/md';
+import {useEffect} from 'react';
 
-const ThemeToggle = () => {
-  const darkMode = useDarkMode(false);
-
+const ThemeToggle = ({darkMode}) => {
   // return (
   //   <>
   //     <MdWbSunny size={32} color={'#FFC23C'} />
   //     <MdNightlightRound size={32} color={'#1C3879'} />
   //   </>
   // );
-
   return (
     <div
       className={css`

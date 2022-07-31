@@ -5,20 +5,27 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Meta from '../components/Meta';
 import '../styles/index.scss';
-
+import useDarkMode from 'use-dark-mode';
 import {useRouter} from 'next/router';
 
 const CowboyBebop = ({Component, pageProps}) => {
   const router = useRouter();
-
   const outerContainerDomRef = useRef(null);
   const [tik, setTik] = useState(null);
+  const darkMode = useDarkMode(false);
 
   const navCloseNotifierWhenRouting = useCallback((e) => {
     setTik(new Date());
   }, []);
 
   useEffect(() => {
+    if (darkMode.value) {
+      const html = document.documentElement;
+      const body = html.querySelector('body');
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+      return;
+    }
     if (window.matchMedia(`(prefers-color-scheme: dark)`).matches) {
       const html = document.documentElement;
       const body = html.querySelector('body');
@@ -31,7 +38,7 @@ const CowboyBebop = ({Component, pageProps}) => {
       body.classList.remove('dark-mode');
       body.classList.add('light-mode');
     }
-  }, []);
+  }, [darkMode]);
 
   return (
     <div
@@ -48,7 +55,11 @@ const CowboyBebop = ({Component, pageProps}) => {
       `}
     >
       <Meta />
-      <Header tik={tik} outerContainerDomRef={outerContainerDomRef} />
+      <Header
+        tik={tik}
+        outerContainerDomRef={outerContainerDomRef}
+        darkMode={darkMode}
+      />
       <main
         className={css`
           background-color: var(--background-color);
