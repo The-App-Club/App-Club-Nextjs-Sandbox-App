@@ -48,7 +48,7 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
         // Burger menu custom styles
         //
         .bm-burger-button {
-          position: fixed;
+          position: absolute;
           width: 30px;
           height: 30px;
           top: 12px;
