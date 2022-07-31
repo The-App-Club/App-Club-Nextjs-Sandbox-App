@@ -10,6 +10,20 @@ body {
   overflow: hidden;
   overflow-y: auto;
   font-family: 'Inter';
+
+  &.light-mode {
+    --menu-background-color: #f7f7f7;
+    --menu-hover-background-color: #ececec;
+    --background-color: #fff;
+    --font-color: #000;
+  }
+
+  &.dark-mode {
+    --menu-background-color: #373a47;
+    --menu-hover-background-color: #3f4250;
+    --background-color: #373a47;
+    --font-color: #fff;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

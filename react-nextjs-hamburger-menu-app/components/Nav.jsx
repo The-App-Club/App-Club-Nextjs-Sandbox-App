@@ -49,9 +49,9 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
         //
         .bm-burger-button {
           position: fixed;
-          width: 36px;
+          width: 30px;
           height: 30px;
-          top: 8px;
+          top: 12px;
           left: ${isRight ? 'initial' : '8px'};
           right: ${isRight ? '8px' : 'initial'};
           display: none;
@@ -77,15 +77,15 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
           right: 36px;
         }
         .bm-burger-bars {
-          background: #373a47;
+          background: var(--font-color);
         }
         .bm-morph-shape {
-          fill: #373a47;
+          fill: var(--font-color);
         }
         .bm-menu {
-          background: #373a47;
+          background: var(--menu-background-color);
           a {
-            color: #b8b7ad;
+            color: var(--font-color);
             &:hover,
             &:focus {
               color: #c94e50;
@@ -120,6 +120,10 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
             align-items: center;
             justify-content: center;
             gap: 3rem;
+            a {
+              background-color: var(--background-color);
+              color: var(--font-color);
+            }
           `}
         >
           <li>
@@ -162,20 +166,19 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 1rem;
             gap: 1rem;
+            li {
+              padding: 1rem 0 1rem 1rem;
+              width: 100%;
+              :hover {
+                cursor: pointer;
+                background: var(--menu-hover-background-color);
+              }
+            }
           `}
         >
           <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
+            className={cx(css``, `bm-item`)}
             onClick={(e) => {
               router.push(`/`);
             }}
@@ -185,15 +188,7 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
             </Link>
           </li>
           <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
+            className={cx(css``, `bm-item`)}
             onClick={(e) => {
               router.push(`/about`);
             }}
@@ -203,15 +198,7 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
             </Link>
           </li>
           <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
+            className={cx(css``, `bm-item`)}
             onClick={(e) => {
               router.push(`/contact`);
             }}
@@ -221,15 +208,7 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
             </Link>
           </li>
           <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
+            className={cx(css``, `bm-item`)}
             onClick={(e) => {
               router.push(`/price`);
             }}
@@ -238,133 +217,7 @@ const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
               <a>Price</a>
             </Link>
           </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          <li
-            className={cx(
-              css`
-                width: 100%;
-                :hover {
-                  cursor: pointer;
-                }
-              `,
-              `bm-item`
-            )}
-            onClick={(e) => {
-              router.push(`/work`);
-            }}
-          >
-            <Link href={`/work`}>
-              <a>work</a>
-            </Link>
-          </li>
-          {[...Array(30).keys()].map((n) => {
+          {[...Array(1).keys()].map((n) => {
             return (
               <li
                 key={n}

@@ -10,7 +10,11 @@ const Footer = () => {
         border-top: 1px solid #eaeaea;
         justify-content: center;
         align-items: center;
+        background-color: var(--background-color);
+        color: var(--font-color);
         a {
+          background-color: var(--background-color);
+          color: var(--font-color);
           display: flex;
           justify-content: center;
           align-items: center;

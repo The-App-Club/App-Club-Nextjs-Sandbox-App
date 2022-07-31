@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import '@fontsource/inter';
-import {useCallback, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Meta from '../components/Meta';
@@ -16,6 +16,21 @@ const CowboyBebop = ({Component, pageProps}) => {
 
   const navCloseNotifierWhenRouting = useCallback((e) => {
     setTik(new Date());
+  }, []);
+
+  useEffect(() => {
+    if (window.matchMedia(`(prefers-color-scheme: dark)`).matches) {
+      const html = document.documentElement;
+      const body = html.querySelector('body');
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+    }
+    if (window.matchMedia(`(prefers-color-scheme: light)`).matches) {
+      const html = document.documentElement;
+      const body = html.querySelector('body');
+      body.classList.remove('dark-mode');
+      body.classList.add('light-mode');
+    }
   }, []);
 
   return (
@@ -34,7 +49,16 @@ const CowboyBebop = ({Component, pageProps}) => {
     >
       <Meta />
       <Header tik={tik} outerContainerDomRef={outerContainerDomRef} />
-      <main className={css``}>
+      <main
+        className={css`
+          background-color: var(--background-color);
+          color: var(--font-color);
+          a {
+            background-color: var(--background-color);
+            color: var(--font-color);
+          }
+        `}
+      >
         <article>
           <Component
             {...pageProps}
