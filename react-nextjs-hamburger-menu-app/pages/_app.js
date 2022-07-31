@@ -19,26 +19,37 @@ const CowboyBebop = ({Component, pageProps}) => {
   }, []);
 
   useEffect(() => {
-    if (darkMode.value) {
-      const html = document.documentElement;
-      const body = html.querySelector('body');
-      body.classList.remove('light-mode');
-      body.classList.add('dark-mode');
-      return;
+    if (router.pathname === `/404`) {
+      // 404 page handling
+      if (darkMode.value) {
+        const html = document.documentElement;
+        const body = html.querySelector('body');
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        // darkMode.enable();
+      } else {
+        const html = document.documentElement;
+        const body = html.querySelector('body');
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        // darkMode.disable();
+      }
+      // if (window.matchMedia(`(prefers-color-scheme: dark)`).matches) {
+      //   const html = document.documentElement;
+      //   const body = html.querySelector('body');
+      //   body.classList.remove('light-mode');
+      //   body.classList.add('dark-mode');
+      //   // darkMode.enable();
+      // }
+      // if (window.matchMedia(`(prefers-color-scheme: light)`).matches) {
+      //   const html = document.documentElement;
+      //   const body = html.querySelector('body');
+      //   body.classList.remove('dark-mode');
+      //   body.classList.add('light-mode');
+      //   // darkMode.disable();
+      // }
     }
-    if (window.matchMedia(`(prefers-color-scheme: dark)`).matches) {
-      const html = document.documentElement;
-      const body = html.querySelector('body');
-      body.classList.remove('light-mode');
-      body.classList.add('dark-mode');
-    }
-    if (window.matchMedia(`(prefers-color-scheme: light)`).matches) {
-      const html = document.documentElement;
-      const body = html.querySelector('body');
-      body.classList.remove('dark-mode');
-      body.classList.add('light-mode');
-    }
-  }, [darkMode]);
+  }, [darkMode, router]);
 
   return (
     <div
