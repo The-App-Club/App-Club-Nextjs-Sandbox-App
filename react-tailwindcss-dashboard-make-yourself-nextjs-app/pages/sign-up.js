@@ -1,24 +1,15 @@
 import {css, cx} from '@emotion/css';
 import Link from 'next/link';
-import {parseCookies} from 'nookies';
 import {useEffect, useState} from 'react';
+import SignUpForm from '../components/SignUpForm';
 import Seo from '../components/Seo';
-import {default as Layout} from '../layouts/default';
-import {useRouter} from 'next/router';
+import {default as Layout} from '../layouts/login';
 
-const Custom404 = () => {
+const SignUp = () => {
   const [pageURL, setPageURL] = useState(null);
-  const router = useRouter();
-  const cookie = parseCookies();
-
   useEffect(() => {
     setPageURL(window.location.href);
-    if (Object.keys(cookie).length === 0) {
-      // https://nextjs.org/docs/api-reference/next.config.js/redirects
-      router.replace('/login');
-    }
-  }, [router, cookie]);
-
+  }, []);
   return (
     <Layout>
       <Seo
@@ -31,18 +22,18 @@ const Custom404 = () => {
       <section
         className={cx(
           `max-w-7xl mx-auto w-full relative flex flex-col items-center`,
-          css``
+          css`
+            min-height: 100vh;
+          `
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">
-          NotFoundPage
+          SignUpPage
         </h2>
-        <Link href={'/'}>
-          <a className={`hover:underline`}>Go to Home</a>
-        </Link>
+        <SignUpForm />
       </section>
     </Layout>
   );
 };
 
-export default Custom404;
+export default SignUp;

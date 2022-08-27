@@ -11,10 +11,11 @@ import Layout from '../layouts/popup';
 import Loading from './Loading';
 import Spacer from './Spacer';
 import Message from './Message';
+import Link from 'next/link';
 
 YupPassword(yup);
 
-const Form = () => {
+const SignUpForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
@@ -248,54 +249,45 @@ const Form = () => {
           initialMessage: '',
         })}
       </div>
-      <div
+
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        disabled={disabled}
         className={cx(
           css`
+            position: relative;
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            gap: 0.5rem;
-            @media (max-width: 768px) {
-            }
-          `
+          `,
+          'text-white bg-blue-700 font-medium rounded-lg text-sm px-6 py-2 text-center',
+          `focus:ring-4 focus:outline-none focus:ring-blue-300`,
+          `hover:bg-blue-800 hover:cursor-pointer`,
+          `disabled:bg-slate-700 disabled:opacity-60`
         )}
       >
-        {renderMessage({
-          infoMessage: showSuccessMessage,
-          initialMessage: '',
-        })}
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          disabled={disabled}
-          className={cx(
-            css`
-              position: relative;
-              width: 60%;
-              @media (max-width: 768px) {
-                width: 60%;
-              }
-            `,
-            'text-white bg-blue-700 font-medium rounded-lg text-sm px-6 py-2 text-center',
-            `focus:ring-4 focus:outline-none focus:ring-blue-300`,
-            `hover:bg-blue-800 hover:cursor-pointer`,
-            `disabled:bg-slate-700 disabled:opacity-60`
-          )}
-        >
-          {`Sign Up`}
-          {loading ? (
-            <Loading
-              className={css`
-                position: absolute;
-                top: 5px;
-                right: 2px;
-              `}
-            />
-          ) : null}
-        </button>
-      </div>
+        {`Sign Up`}
+        {loading ? (
+          <Loading
+            className={css`
+              position: absolute;
+              top: 5px;
+              right: 2px;
+            `}
+          />
+        ) : null}
+      </button>
+      <Spacer height="0.5rem" />
+      {renderMessage({
+        infoMessage: showSuccessMessage,
+        initialMessage: '',
+      })}
+      <Link href={'/login'}>
+        <a className={`hover:underline inline-block mt-4`}>
+          Already have an account?
+        </a>
+      </Link>
     </form>
   );
 };
 
-export default Form;
+export default SignUpForm;

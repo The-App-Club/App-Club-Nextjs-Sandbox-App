@@ -1,7 +1,7 @@
 import {css, cx} from '@emotion/css';
 import Link from 'next/link';
 import {useEffect, useState} from 'react';
-import Form from '../components/Form';
+import LoginForm from '../components/LoginForm';
 import Seo from '../components/Seo';
 import {default as Layout} from '../layouts/login';
 
@@ -22,11 +22,13 @@ const Login = () => {
       <section
         className={cx(
           `max-w-7xl mx-auto w-full relative flex flex-col items-center`,
-          css``
+          css`
+            min-height: 100vh;
+          `
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">LoginPage</h2>
-        <Form />
+        <LoginForm />
       </section>
     </Layout>
   );

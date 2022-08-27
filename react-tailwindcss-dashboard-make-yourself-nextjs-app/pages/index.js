@@ -22,8 +22,8 @@ const Home = ({item, pageURL}) => {
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">HomePage</h2>
-        <Link href={'/about'} className={`hover:underline`}>
-          <a>Go to About</a>
+        <Link href={'/about'}>
+          <a className={`hover:underline`}>Go to About</a>
         </Link>
       </section>
     </Layout>

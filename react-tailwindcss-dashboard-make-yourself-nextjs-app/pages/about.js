@@ -23,8 +23,8 @@ const About = ({item, pageURL}) => {
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">AboutPage</h2>
-        <Link href={'/'} className={`hover:underline`}>
-          <a>Go to Home</a>
+        <Link href={'/'}>
+          <a className={`hover:underline`}>Go to Home</a>
         </Link>
       </section>
     </Layout>

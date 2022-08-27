@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Header from '../components/HeaderNoLogin';
 import Sidebar from '../components/Sidebar';
 import SidebarTooltip from '../components/SidebarTooltip';
+import Spacer from '../components/Spacer';
 
 const motionConfig = {
   initial: {
@@ -100,11 +101,12 @@ const Layout = ({children}) => {
               }}
             >
               {children}
+              <Spacer />
+              <Footer />
             </motion.div>
           </article>
         </main>
       </div>
-      <Footer />
     </div>
   );
 };
