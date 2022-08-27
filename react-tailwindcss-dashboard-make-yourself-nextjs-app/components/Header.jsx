@@ -42,15 +42,17 @@ const Header = ({opened, handleClick}) => {
         </Link>
       </div>
       <div
-        className={css`
-          min-height: 3rem;
-          position: absolute;
-          top: 0;
-          right: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        `}
+        className={cx(
+          css`
+            min-height: 3rem;
+            position: absolute;
+            top: 0;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          `
+        )}
       >
         <Notification
           menuData={[

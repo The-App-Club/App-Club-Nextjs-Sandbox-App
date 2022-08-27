@@ -9,7 +9,6 @@ import {AiOutlineQuestionCircle} from 'react-icons/ai';
 import {MdOutlineLocalPolice} from 'react-icons/md';
 import {GiChestnutLeaf} from 'react-icons/gi';
 
-import {Hamburger} from './Hamburger';
 import Nav from './Nav';
 
 const Sidebar = ({

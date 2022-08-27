@@ -1,9 +1,9 @@
 import {css} from '@emotion/css';
 import {motion} from 'framer-motion';
-import {memo, useCallback, useEffect, useRef, useState} from 'react';
+import {memo, useCallback, useEffect, useState} from 'react';
 import {useDebouncedCallback} from 'use-debounce';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/HeaderNoLogin';
 import Sidebar from '../components/Sidebar';
 import SidebarTooltip from '../components/SidebarTooltip';
 
@@ -26,35 +26,12 @@ const motionConfig = {
 };
 
 const Layout = ({children}) => {
-  const mainDomRef = useRef();
-  const [isTrigger, setIsTrigger] = useState(false);
   const [opened, setOpened] = useState(false);
-  const [sidebarOverflowXHidden, setSidebarOverflowXHidden] = useState(false);
   const [sidebarMinWidth, setSidebarMinWidth] = useState(null);
   const [sidebarMaxWidth, setSidebarMaxWidth] = useState(null);
   const doAutoCloseSideBar = useCallback((e) => {
     setOpened(false);
   }, []);
-  const handleClick = useCallback((e) => {
-    if (window.matchMedia('(max-width: 768px)').matches) {
-      setSidebarOverflowXHidden(true);
-    }
-    setOpened((opened) => {
-      return !opened;
-    });
-    setIsTrigger(true);
-  }, []);
-  const doneSidebarAction = useCallback(() => {
-    if (!window.matchMedia('(max-width: 768px)').matches) {
-      return;
-    }
-    if (opened) {
-      setSidebarOverflowXHidden(true);
-    } else {
-      setSidebarOverflowXHidden(false);
-    }
-  }, [opened]);
-
   const handleResize = useDebouncedCallback((e) => {
     if (window.matchMedia('(max-width: 768px)').matches) {
       setSidebarMinWidth(0);
@@ -91,29 +68,9 @@ const Layout = ({children}) => {
         min-height: 100vh;
       `}
     >
-      <Header opened={opened} handleClick={handleClick} />
-      <div
-        className={`pt-12 flex flex-1 w-full h-full relative ${
-          sidebarOverflowXHidden ? 'overflow-x-hidden' : ''
-        }`}
-      >
-        <Sidebar
-          opened={opened}
-          setOpened={setOpened}
-          isTrigger={isTrigger}
-          setIsTrigger={setIsTrigger}
-          handleClick={handleClick}
-          sidebarMinWidth={sidebarMinWidth}
-          sidebarMaxWidth={sidebarMaxWidth}
-          doneSidebarAction={doneSidebarAction}
-        />
-        <SidebarTooltip
-          opened={opened}
-          sidebarMinWidth={sidebarMinWidth}
-          sidebarMaxWidth={sidebarMaxWidth}
-        />
+      <Header />
+      <div className={`pt-12 flex flex-1 w-full h-full relative`}>
         <main
-          ref={mainDomRef}
           className={css`
             --sidebar-width: ${opened ? sidebarMaxWidth : sidebarMinWidth}px;
             position: absolute;

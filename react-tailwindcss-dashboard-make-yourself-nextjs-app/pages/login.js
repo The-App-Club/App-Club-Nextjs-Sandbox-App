@@ -1,12 +1,15 @@
 import {css, cx} from '@emotion/css';
 import Link from 'next/link';
+import {useEffect, useState} from 'react';
+import Form from '../components/Form';
 import Seo from '../components/Seo';
-import {default as Layout} from '../layouts/default';
-import {parseCookies} from 'nookies';
+import {default as Layout} from '../layouts/login';
 
-const About = ({item, pageURL}) => {
-  const cookie = parseCookies();
-  console.log(`[About]`, cookie);
+const Login = () => {
+  const [pageURL, setPageURL] = useState(null);
+  useEffect(() => {
+    setPageURL(window.location.href);
+  }, []);
   return (
     <Layout>
       <Seo
@@ -22,30 +25,11 @@ const About = ({item, pageURL}) => {
           css``
         )}
       >
-        <h2 className="text-3xl flex items-center justify-center">AboutPage</h2>
-        <Link href={'/'} className={`hover:underline`}>
-          <a>Go to Home</a>
-        </Link>
+        <h2 className="text-3xl flex items-center justify-center">LoginPage</h2>
+        <Form />
       </section>
     </Layout>
   );
 };
 
-export function getServerSideProps({
-  req,
-  res,
-  query,
-  resolvedUrl,
-  locales,
-  locale,
-  defaultLocale,
-}) {
-  return {
-    props: {
-      item: `apple`,
-      pageURL: req.headers.referer,
-    },
-  };
-}
-
-export default About;
+export default Login;

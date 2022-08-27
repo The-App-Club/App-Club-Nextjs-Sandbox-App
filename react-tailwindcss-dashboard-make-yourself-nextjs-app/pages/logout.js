@@ -1,12 +1,21 @@
 import {css, cx} from '@emotion/css';
 import Link from 'next/link';
+import {useEffect} from 'react';
 import Seo from '../components/Seo';
 import {default as Layout} from '../layouts/default';
-import {parseCookies} from 'nookies';
+import {destroyCookie} from 'nookies';
+import {useRouter} from 'next/router';
 
-const About = ({item, pageURL}) => {
-  const cookie = parseCookies();
-  console.log(`[About]`, cookie);
+const Logout = ({item, pageURL}) => {
+  const router = useRouter();
+  useEffect(() => {
+    destroyCookie(null, 'jwtToken', {
+      maxAge: 365 * 24 * 60 * 60,
+      secure: true,
+    });
+    router.replace('/');
+  }, [router]);
+
   return (
     <Layout>
       <Seo
@@ -22,10 +31,9 @@ const About = ({item, pageURL}) => {
           css``
         )}
       >
-        <h2 className="text-3xl flex items-center justify-center">AboutPage</h2>
-        <Link href={'/'} className={`hover:underline`}>
-          <a>Go to Home</a>
-        </Link>
+        <h2 className="text-3xl flex items-center justify-center">
+          LogoutPage
+        </h2>
       </section>
     </Layout>
   );
@@ -48,4 +56,4 @@ export function getServerSideProps({
   };
 }
 
-export default About;
+export default Logout;
