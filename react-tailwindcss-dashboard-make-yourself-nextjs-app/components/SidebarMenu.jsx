@@ -47,7 +47,7 @@ const SidebarMenu = ({opened, path, menuTitle, icon, notifier}) => {
         router.push({
           pathname: path,
           query: {
-            item: `apple`,
+            // item: `apple`,
           },
         });
       }}

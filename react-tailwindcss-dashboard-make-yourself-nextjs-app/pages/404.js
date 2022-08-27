@@ -22,9 +22,7 @@ const Custom404 = ({notifier}) => {
       <section
         className={cx(
           `max-w-7xl mx-auto w-full relative flex flex-col items-center`,
-          css`
-            min-height: 100vh;
-          `
+          css``
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">

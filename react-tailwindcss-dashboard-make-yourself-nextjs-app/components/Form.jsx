@@ -68,7 +68,7 @@ const Form = () => {
     // console.log(`correctEmail, correctPassword`, correctEmail, correctPassword);
     setLoading(true);
     setDisabled(true);
-    setTimeout(async () => {
+    setTimeout(() => {
       setShowSuccessMessage('Nice work!');
       setLoading(false);
       // do generate jwtToken on backend, then set the jwtToken on frontend
@@ -76,8 +76,10 @@ const Form = () => {
         maxAge: 365 * 24 * 60 * 60,
         secure: true,
       });
-      router.replace('/');
-    }, 1300);
+      setTimeout(() => {
+        router.replace('/');
+      }, 3000);
+    }, 200);
   };
 
   const yesYouCan = async () => {
