@@ -31,15 +31,19 @@ const About = ({item, pageURL}) => {
   );
 };
 
-export function getServerSideProps({
-  req,
-  res,
-  query,
-  resolvedUrl,
-  locales,
-  locale,
-  defaultLocale,
-}) {
+export function getServerSideProps(ctx) {
+  const {req, res, query, resolvedUrl, locales, locale, defaultLocale} = ctx;
+  const cookie = parseCookies(ctx);
+  if (Object.keys(cookie).length === 0) {
+    // https://nextjs.org/docs/api-reference/next.config.js/redirects
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/login',
+      },
+    };
+  }
+  // console.log('cookie', cookie);
   return {
     props: {
       item: `apple`,

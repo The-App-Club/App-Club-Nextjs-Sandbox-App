@@ -31,7 +31,9 @@ const Footer = ({className}) => {
           height={40}
           className={`hover:cursor-pointer`}
           onClick={(e) => {
-            router.push('/');
+            router.push({
+              pathname: '/',
+            });
           }}
         />
         <Link href={'/'} className={`flex items-center gap-2`}>

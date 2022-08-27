@@ -39,15 +39,8 @@ const Logout = ({item, pageURL}) => {
   );
 };
 
-export function getServerSideProps({
-  req,
-  res,
-  query,
-  resolvedUrl,
-  locales,
-  locale,
-  defaultLocale,
-}) {
+export async function getServerSideProps(ctx) {
+  const {req, res, query, resolvedUrl, locales, locale, defaultLocale} = ctx;
   return {
     props: {
       item: `apple`,
