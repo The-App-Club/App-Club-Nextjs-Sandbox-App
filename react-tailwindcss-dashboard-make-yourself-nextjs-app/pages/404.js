@@ -31,7 +31,9 @@ const Custom404 = () => {
       <section
         className={cx(
           `max-w-7xl mx-auto w-full relative flex flex-col items-center`,
-          css``
+          css`
+            min-height: 100vh;
+          `
         )}
       >
         <h2 className="text-3xl flex items-center justify-center">

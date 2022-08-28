@@ -26,6 +26,9 @@ const About = ({item, pageURL}) => {
         <Link href={'/'}>
           <a className={`hover:underline`}>Go to Home</a>
         </Link>
+        {[...Array(100)].map((_, index) => {
+          return <p key={index}>a</p>;
+        })}
       </section>
     </Layout>
   );

@@ -7,6 +7,7 @@
     "format": "prettier --write \"{,!(node_modules|dist|build)/**/}*.*\""
   },
   "dependencies": {
+    "@mui/material": "^5.10.2",
     "@szhsin/react-menu": "^3.1.2",
     "framer-motion": "^7.2.1",
     "gsap": "^3.11.0",

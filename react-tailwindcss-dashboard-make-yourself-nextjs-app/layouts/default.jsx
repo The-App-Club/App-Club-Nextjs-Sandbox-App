@@ -1,7 +1,8 @@
-import {css} from '@emotion/css';
+import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
 import {memo, useCallback, useEffect, useRef, useState} from 'react';
 import {useDebouncedCallback} from 'use-debounce';
+import Breadcrumbs from '../components/Breadcrumbs';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
@@ -123,6 +124,16 @@ const Layout = ({children}) => {
               width 0.2s ease ${opened ? 0 : 250}ms;
           `}
         >
+          <Breadcrumbs
+            className={cx(
+              css`
+                position: sticky;
+                top: 3rem;
+                z-index: 2;
+              `,
+              `w-full pl-2 bg-white`
+            )}
+          />
           <article className="w-full">
             <motion.div
               className={css`
@@ -143,11 +154,11 @@ const Layout = ({children}) => {
               }}
             >
               {children}
+              <Footer />
             </motion.div>
           </article>
         </main>
       </div>
-      <Footer />
     </div>
   );
 };
