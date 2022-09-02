@@ -5,7 +5,6 @@ import themeState from '../stores/themeStore';
 
 const decideHamburgerColor = ({mode}) => {
   if (mode === `dark`) {
-    console.log(`a`);
     return css`
       .hamburger-inner,
       .hamburger-inner::before,
@@ -32,7 +31,6 @@ const decideHamburgerColor = ({mode}) => {
 
 const Hamburger = ({className, opened, handleClick}) => {
   const {mode} = useRecoilValue(themeState);
-  console.log(`mode`, mode);
   return (
     <div className={cx(css``, className)}>
       <div

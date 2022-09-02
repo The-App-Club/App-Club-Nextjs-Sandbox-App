@@ -1,5 +1,6 @@
 import {useEffect, useRef} from 'react';
 import gsap, {Power3} from 'gsap';
+import {motion, useAnimationControls} from 'framer-motion';
 import {css, cx} from '@emotion/css';
 import {FiTwitter} from 'react-icons/fi';
 import {MdOutlineNotifications} from 'react-icons/md';
@@ -54,6 +55,7 @@ const MenuItem = ({path, menuTitle, icon}) => {
 
 const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
   const navContainerDomRef = useRef();
+  const controls = useAnimationControls();
 
   useClickOutside(navContainerDomRef, (e) => {
     if (!isTrigger) {
@@ -62,6 +64,9 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
   });
 
   useEffect(() => {
+    controls.set({
+      opacity: 1,
+    });
     if (opened) {
       document.body.classList.add('loading');
       gsap.to(navContainerDomRef.current, {
@@ -86,10 +91,15 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
   }, [opened, setIsTrigger]);
 
   return (
-    <nav
+    <motion.nav
       ref={navContainerDomRef}
+      initial={{
+        opacity: 0,
+      }}
+      animate={controls}
       className={cx(
         css`
+          opacity: 0;
           z-index: 4;
           transform: translate(100%, 0%);
           max-width: 22rem;
@@ -177,7 +187,7 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
           />
         </ul>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
