@@ -1,249 +1,189 @@
-import Link from 'next/link';
+import {useEffect, useRef} from 'react';
+import gsap, {Power3} from 'gsap';
 import {css, cx} from '@emotion/css';
-import {
-  slide as Menu,
-  bubble,
-  elastic,
-  reveal,
-  scaleRotate,
-  stack,
-  fallDown,
-  push,
-  pushRotate,
-  scaleDown,
-} from 'react-burger-menu';
-import {useEffect, useState} from 'react';
+import {FiTwitter} from 'react-icons/fi';
+import {MdOutlineNotifications} from 'react-icons/md';
+import {BiDotsHorizontalRounded} from 'react-icons/bi';
+import {MdOutlineChat} from 'react-icons/md';
+import {BiTimeFive} from 'react-icons/bi';
+import {RiAdvertisementLine} from 'react-icons/ri';
+import Link from 'next/link';
 
+import {useHamburger} from '../hooks/useHamburger';
+import {useClickOutside} from '../hooks/useClickOutside';
+import Hamburger from './Hamburger';
+import {useRecoilValue} from 'recoil';
+import themeState from '../stores/themeStore';
 import {useRouter} from 'next/router';
 
-const Nav = ({tik, isRight = false, outerContainerDomRef}) => {
+const decideBorderColor = ({theme}) => {
+  if (theme === `dark`) {
+    return css``;
+  }
+
+  return `hover:border-blue-900`;
+};
+
+const MenuItem = ({path, menuTitle, icon}) => {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    // console.log(`tik`, open);
-    setOpen((open) => {
-      if (open) {
-        return false;
-      }
-      return open;
-    });
-  }, [tik]);
-
+  const theme = useRecoilValue(themeState);
   return (
-    <div
-      className={css`
-        position: relative;
-        width: 100%;
-        min-height: 3rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        @media (max-width: 768px) {
-          display: block;
-          justify-content: initial;
-          align-items: initial;
-        }
-        //
-        // Burger menu custom styles
-        //
-        .bm-burger-button {
-          position: absolute;
-          width: 30px;
-          height: 30px;
-          top: 12px;
-          left: ${isRight ? 'initial' : '8px'};
-          right: ${isRight ? '8px' : 'initial'};
-          display: none;
-          @media (max-width: 768px) {
-            display: block;
-          }
-        }
-        // Outline for burger button focus state
-        .bm-burger-button button:focus {
-          outline: 2px solid #c94e50;
-          outline-offset: 8px;
-        }
-        // Background color for burger bars focus state
-        .bm-burger-button {
-          button:focus + span {
-            span.bm-burger-bars {
-              background-color: #c94e50;
-            }
-          }
-        }
-        .right .bm-burger-button {
-          left: initial;
-          right: 36px;
-        }
-        .bm-burger-bars {
-          background: var(--font-color);
-        }
-        .bm-morph-shape {
-          fill: var(--font-color);
-        }
-        .bm-menu {
-          background: var(--menu-background-color);
-          a {
-            color: var(--font-color);
-            &:hover,
-            &:focus {
-              color: #c94e50;
-            }
-          }
-        }
-        .bm-item:focus {
-          outline: none;
-        }
-      `}
+    <li
+      className={cx(
+        css`
+          width: 100%;
+          min-height: 3rem;
+        `,
+        `flex items-center gap-2 pl-2 hover:cursor-pointer`,
+        `border-l-2 border-transparent`,
+        `hover:bg-gray-100 dark:hover:bg-slate-800`,
+        decideBorderColor({theme})
+      )}
+      onClick={(e) => {
+        router.push({
+          pathname: path,
+        });
+      }}
     >
-      <nav
-        className={css`
-          /* position: absolute;
-          top: 0;
-          right: 8px; */
-          position: relative;
-          z-index: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          @media (max-width: 768px) {
-            display: none;
-          }
-        `}
-      >
-        <ul
-          className={css`
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 3rem;
-            a {
-              background-color: var(--background-color);
-              color: var(--font-color);
-            }
-          `}
-        >
-          <li>
-            <Link href={`/about`}>
-              <a>About</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={`/contact`}>
-              <a>Contact</a>
-            </Link>
-          </li>
-          <li>
-            <Link href={`/price`}>
-              <a>Price</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      <Menu
-        isOpen={open}
-        onStateChange={(e) => {
-          const outerContainerDom = outerContainerDomRef.current;
-          if (e.isOpen) {
-            outerContainerDom.classList.add('nav-active');
-          } else {
-            outerContainerDom.classList.remove('nav-active');
-          }
-          setOpen(e.isOpen);
-        }}
-        pageWrapId={'page-wrap'}
-        outerContainerId={'outer-container'}
-        right={isRight}
-      >
-        <ul
-          className={css`
-            width: 100%;
-            list-style: none;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1rem;
-            li {
-              padding: 1rem 0 1rem 1rem;
-              width: 100%;
-              :hover {
-                cursor: pointer;
-                background: var(--menu-hover-background-color);
-              }
-            }
-          `}
-        >
-          <li
-            className={cx(css``, `bm-item`)}
-            onClick={(e) => {
-              router.push(`/`);
-            }}
-          >
-            <Link href={`/`}>
-              <a>Home</a>
-            </Link>
-          </li>
-          <li
-            className={cx(css``, `bm-item`)}
-            onClick={(e) => {
-              router.push(`/about`);
-            }}
-          >
-            <Link href={`/about`}>
-              <a>About</a>
-            </Link>
-          </li>
-          <li
-            className={cx(css``, `bm-item`)}
-            onClick={(e) => {
-              router.push(`/contact`);
-            }}
-          >
-            <Link href={`/contact`}>
-              <a>Contact</a>
-            </Link>
-          </li>
-          <li
-            className={cx(css``, `bm-item`)}
-            onClick={(e) => {
-              router.push(`/price`);
-            }}
-          >
-            <Link href={`/price`}>
-              <a>Price</a>
-            </Link>
-          </li>
-          {[...Array(1).keys()].map((n) => {
-            return (
-              <li
-                key={n}
-                className={cx(
-                  css`
-                    width: 100%;
-                    :hover {
-                      cursor: pointer;
-                    }
-                  `,
-                  `bm-item`
-                )}
-                onClick={(e) => {
-                  router.push(`/work`);
-                }}
-              >
-                <Link href={`/work`}>
-                  <a>work</a>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </Menu>
-    </div>
+      {icon()}
+      <Link href={path}>
+        <a>{menuTitle}</a>
+      </Link>
+    </li>
   );
 };
 
-export {Nav};
+const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
+  const navContainerDomRef = useRef();
+
+  useClickOutside(navContainerDomRef, (e) => {
+    if (!isTrigger) {
+      setOpened(false);
+    }
+  });
+
+  useEffect(() => {
+    console.log(`[Nav]opened`, opened);
+  }, [opened]);
+
+  useEffect(() => {
+    if (opened) {
+      document.body.classList.add('loading');
+      gsap.to(navContainerDomRef.current, {
+        x: `0%`,
+        duration: 0.6,
+        ease: Power3.easeInOut,
+        onComplete: function () {
+          setIsTrigger(false);
+        },
+      });
+    } else {
+      document.body.classList.remove('loading');
+      gsap.to(navContainerDomRef.current, {
+        x: `100%`,
+        duration: 0.6,
+        ease: Power3.easeInOut,
+        onComplete: function () {
+          setIsTrigger(false);
+        },
+      });
+    }
+  }, [opened, setIsTrigger]);
+
+  return (
+    <nav
+      ref={navContainerDomRef}
+      className={cx(
+        css`
+          z-index: 4;
+          transform: translate(100%, 0%);
+          max-width: 22rem;
+          @media (max-width: 768px) {
+            max-width: 16rem;
+          }
+        `,
+        `fixed top-0 right-0 min-h-screen`,
+        `overflow-hidden overflow-y-auto scrollbar-none bg-gray-50`,
+        `w-full h-full`,
+        `flex justify-start items-start flex-col`,
+        `dark:bg-slate-700 dark:text-white`,
+        `border-l-2`
+      )}
+    >
+      <div className="relative w-full">
+        <div
+          className={cx(
+            css`
+              position: absolute;
+              top: 0.5rem;
+              left: 0;
+              width: 100%;
+            `,
+            `flex items-center gap-2 border-b-2`
+          )}
+        >
+          <img src={`/assets/logo.png`} alt={'logo'} width={40} height={40} />
+          <h3 className="text-2xl">Menu</h3>
+        </div>
+        <Hamburger
+          opened={opened}
+          handleClick={handleClick}
+          className={css`
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+          `}
+        />
+        <ul
+          className={css`
+            padding-top: 3rem;
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          `}
+        >
+          <MenuItem
+            path={'/'}
+            menuTitle={'Home'}
+            icon={() => {
+              return <FiTwitter size={24} />;
+            }}
+          />
+          <MenuItem
+            path={'/about'}
+            menuTitle={'About'}
+            icon={() => {
+              return <RiAdvertisementLine size={24} />;
+            }}
+          />
+          <MenuItem
+            path={'/contact'}
+            menuTitle={'Contact'}
+            icon={() => {
+              return <MdOutlineChat size={24} />;
+            }}
+          />
+          <MenuItem
+            path={'/price'}
+            menuTitle={'Price'}
+            icon={() => {
+              return <BiTimeFive size={24} />;
+            }}
+          />
+          <MenuItem
+            path={'/notification'}
+            menuTitle={'Notification'}
+            icon={() => {
+              return <MdOutlineNotifications size={24} />;
+            }}
+          />
+        </ul>
+      </div>
+    </nav>
+  );
+};
+
+export default Nav;

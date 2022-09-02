@@ -1,28 +1,28 @@
-import {css} from '@emotion/css';
+import {css, cx} from '@emotion/css';
 import Link from 'next/link';
 import Layout from '../layouts/default';
 
-const Price = ({pageName, notifier}) => {
+const Price = () => {
   return (
-    <Layout pageName={pageName} notifier={notifier}>
+    <Layout className={`mt-12`}>
       <section
-        className={css`
-          max-width: 30rem;
-          margin: auto;
-          width: 100%;
-          min-height: 100vh;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-          flex-direction: column;
-        `}
+        className={cx(
+          `max-w-7xl mx-auto w-full`,
+          css`
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+          `
+        )}
       >
-        <h2>PricePage</h2>
-        <p>something...</p>
-        <p>something...</p>
-        <p>something...</p>
-        <Link href={`/`}>
-          <a>Home</a>
+        <h2 className="text-3xl flex items-center justify-center">Price</h2>
+        <p className="flex items-center justify-center">something...</p>
+        <p className="flex items-center justify-center">something...</p>
+        <p className="flex items-center justify-center">something...</p>
+        <Link href={'/'}>
+          <a className="hover:underline">Back to home</a>
         </Link>
       </section>
     </Layout>

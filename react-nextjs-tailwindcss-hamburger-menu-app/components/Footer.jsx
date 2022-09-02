@@ -1,30 +1,62 @@
-import {css} from '@emotion/css';
-import Image from 'next/image';
+import {css, cx} from '@emotion/css';
+import {useRouter} from 'next/router';
+import {BsTwitter} from 'react-icons/bs';
+import {FaFacebookF} from 'react-icons/fa';
+import {AiFillInstagram} from 'react-icons/ai';
+import {BsPinterest} from 'react-icons/bs';
+import {RiAccountCircleLine} from 'react-icons/ri';
+import {AiOutlineQuestionCircle} from 'react-icons/ai';
+import {MdOutlineLocalPolice} from 'react-icons/md';
+import {GiChestnutLeaf} from 'react-icons/gi';
+import {AiOutlineCopyright} from 'react-icons/ai';
+import Link from 'next/link';
 
 const Footer = () => {
+  const router = useRouter();
   return (
     <footer
-      className={css`
-        display: flex;
-        padding: 2rem 0;
-        border-top: 1px solid #eaeaea;
-        justify-content: center;
-        align-items: center;
-        background-color: var(--background-color);
-        color: var(--font-color);
-        a {
-          background-color: var(--background-color);
-          color: var(--font-color);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      `}
+      className={cx(
+        css``,
+        `text-xl flex justify-center flex-col items-center`,
+        `border-t-2 py-2`,
+        `dark:bg-slate-700 dark:text-white`
+      )}
     >
-      <a href="https://example.com/" target="_blank" rel="noopener noreferrer">
-        <span className={css``}>Powered by </span>
-        <img src="/assets/logo.png" alt="logo" width={72} height={72} />
-      </a>
+      <div
+        className={`flex items-center gap-1`}
+        onClick={(e) => {
+          router.push({
+            pathname: '/',
+          });
+        }}
+      >
+        <img src={`/assets/logo.png`} alt={'logo'} width={40} height={40} />
+        <h2 className="text-xl">Make YourSelf</h2>
+      </div>
+      <div className="flex flex-col items-center gap-1">
+        <div className="flex items-center gap-1">
+          <BsTwitter
+            size={24}
+            className={'hover:cursor-pointer hover:text-blue-400'}
+          />
+          <FaFacebookF
+            size={24}
+            className={'hover:cursor-pointer hover:text-blue-900'}
+          />
+          <AiFillInstagram
+            size={24}
+            className={'hover:cursor-pointer hover:text-pink-700'}
+          />
+          <BsPinterest
+            size={24}
+            className={'hover:cursor-pointer hover:text-red-700'}
+          />
+        </div>
+        <div className="flex items-center">
+          <AiOutlineCopyright size={16} />
+          <span className="text-sm">Make YourSelf</span>
+        </div>
+      </div>
     </footer>
   );
 };

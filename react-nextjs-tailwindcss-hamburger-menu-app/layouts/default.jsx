@@ -1,6 +1,6 @@
-import {css} from '@emotion/css';
+import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
-import {memo} from 'react';
+import {memo, useEffect} from 'react';
 
 const motionConfig = {
   initial: {
@@ -20,13 +20,16 @@ const motionConfig = {
   },
 };
 
-const Layout = ({children, pageName, notifier}) => {
+const Layout = ({children, className, notifier}) => {
   return (
     <motion.div
-      className={css`
-        width: 100%;
-        position: relative;
-      `}
+      className={cx(
+        css`
+          width: 100%;
+          position: relative;
+        `,
+        className
+      )}
       initial={'initial'}
       animate={'animate'}
       exit={'hidden'}
@@ -36,9 +39,7 @@ const Layout = ({children, pageName, notifier}) => {
       }}
       variants={motionConfig}
       onAnimationStart={(e) => {}}
-      onAnimationComplete={(e) => {
-        notifier({message: `done`, pageName});
-      }}
+      onAnimationComplete={(e) => {}}
     >
       {children}
     </motion.div>

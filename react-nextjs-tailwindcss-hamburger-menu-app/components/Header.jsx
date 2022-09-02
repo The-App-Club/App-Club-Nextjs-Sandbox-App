@@ -1,93 +1,59 @@
-import {css} from '@emotion/css';
-import Image from 'next/image';
+import {css, cx} from '@emotion/css';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
+import {useCallback, useEffect, useState} from 'react';
+import {useHamburger} from '../hooks/useHamburger';
+import Hamburger from './Hamburger';
+import Nav from './Nav';
 import ThemeToggle from './ThemeToggle';
-import {Nav} from './Nav';
 
-const Header = ({tik, outerContainerDomRef, darkMode}) => {
+const Header = () => {
   const router = useRouter();
+  const {isTrigger, setIsTrigger, opened, setOpened, handleClick} =
+    useHamburger();
+
+  useEffect(() => {
+    console.log(`[Header]opened`, opened);
+  }, [opened]);
+
   return (
     <header
-      className={css`
-        z-index: 1;
-        position: sticky;
-        top: 0;
-        width: 100%;
-        background-color: var(--background-color);
-        color: var(--font-color);
-        /* background: wheat; */
-        /* &::before {
-          content: ' ';
-          display: block;
-          position: absolute;
-          left: 0;
+      className={cx(
+        css`
+          position: fixed;
+          z-index: 1;
           top: 0;
           width: 100%;
-          height: 100%;
-          opacity: 0.7;
-          background: #fff;
-          filter: blur(10px);
-        } */
-      `}
+          min-height: 3rem;
+        `,
+        'flex items-center bg-white',
+        `dark:bg-slate-700 dark:text-white`
+      )}
     >
-      <div
-        className={css`
-          position: relative;
-          width: 100%;
-        `}
-      >
+      <div className="relative w-full flex items-center">
         <div
-          className={css`
-            position: absolute;
-            left: 0;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            @media (max-width: 768px) {
-              gap: 0.5rem;
-            }
-            :hover {
-              cursor: pointer;
-            }
-          `}
+          className={`flex items-center gap-1 hover:cursor-pointer`}
           onClick={(e) => {
-            router.push('/');
+            router.push({
+              pathname: '/',
+            });
           }}
         >
-          <img src="/assets/logo.png" alt="logo" width={48} height={48} />
-          <h2
-            className={css`
-              font-size: 1.25rem;
-              @media (max-width: 768px) {
-                font-size: 0.85rem;
-              }
-            `}
-          >
-            Cowboy Bebop Nights
-          </h2>
+          <img src={`/assets/logo.png`} alt={'logo'} width={40} height={40} />
+          <h2 className="text-xl">Make YourSelf</h2>
+        </div>
+        <div className="absolute right-2 flex items-center gap-2">
+          <ThemeToggle />
+          <Hamburger opened={opened} handleClick={handleClick} />
         </div>
       </div>
       <Nav
-        tik={tik}
-        isRight={true}
-        outerContainerDomRef={outerContainerDomRef}
+        isTrigger={isTrigger}
+        handleClick={handleClick}
+        opened={opened}
+        setIsTrigger={setIsTrigger}
+        setOpened={setOpened}
       />
-      <div
-        className={css`
-          position: absolute;
-          top: 4px;
-          right: 8px;
-          z-index: 1;
-          @media (max-width: 768px) {
-            top: 8px;
-            right: 50px;
-          }
-        `}
-      >
-        <ThemeToggle darkMode={darkMode} />
-      </div>
     </header>
   );
 };

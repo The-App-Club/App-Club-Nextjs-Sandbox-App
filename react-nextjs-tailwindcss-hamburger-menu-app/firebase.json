@@ -2,11 +2,7 @@
   "hosting": {
     "public": "out",
     "site": "react-nextjs-tailwindcss-hamburger-menu-app",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "/about",
