@@ -1,4 +1,6 @@
 import {css} from '@emotion/css';
+import {CacheProvider} from '@emotion/react';
+import {cache} from '@emotion/css';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {useRouter} from 'next/router';
 import {RecoilRoot, useRecoilValue} from 'recoil';
@@ -26,19 +28,15 @@ const CowboyBebopInit = ({children, setOpened}) => {
   );
 
   useEffect(() => {
-    if (router.pathname === `/404`) {
-      // 404 page handling
-      if (mode === `dark`) {
-        const html = document.documentElement;
-        html.classList.remove('light');
-        html.classList.add('dark');
-      } else {
-        const html = document.documentElement;
-        html.classList.remove('dark');
-        html.classList.add('light');
-      }
+    if (mode === `dark`) {
+      const html = document.documentElement;
+      html.classList.remove('light');
+      html.classList.add('dark');
+    } else {
+      const html = document.documentElement;
+      html.classList.remove('dark');
+      html.classList.add('light');
     }
-
     router.events.on('routeChangeStart', handleRouteChangeStart);
     return () => {
       router.events.off('routeChangeStart', handleRouteChangeStart);
@@ -65,23 +63,25 @@ const CowboyBebop = ({Component, pageProps}) => {
 
   return (
     <RecoilRoot>
-      <CowboyBebopInit setOpened={setOpened}>
-        <Meta />
-        <Nav
-          isTrigger={isTrigger}
-          handleClick={handleClick}
-          opened={opened}
-          setIsTrigger={setIsTrigger}
-          setOpened={setOpened}
-        />
-        <Header opened={opened} handleClick={handleClick} />
-        <main>
-          <article>
-            <Component {...pageProps} notifier={doAutoCloseSideBar} />
-          </article>
-        </main>
-        <Footer />
-      </CowboyBebopInit>
+      <CacheProvider value={cache}>
+        <CowboyBebopInit setOpened={setOpened}>
+          <Meta />
+          <Nav
+            isTrigger={isTrigger}
+            handleClick={handleClick}
+            opened={opened}
+            setIsTrigger={setIsTrigger}
+            setOpened={setOpened}
+          />
+          <Header opened={opened} handleClick={handleClick} />
+          <main>
+            <article>
+              <Component {...pageProps} notifier={doAutoCloseSideBar} />
+            </article>
+          </main>
+          <Footer />
+        </CowboyBebopInit>
+      </CacheProvider>
     </RecoilRoot>
   );
 };

@@ -1,5 +1,6 @@
 import {css, cx} from '@emotion/css';
 import 'hamburgers/dist/hamburgers.css';
+import {useEffect, useState} from 'react';
 import {useRecoilValue} from 'recoil';
 import themeState from '../stores/themeStore';
 
@@ -31,6 +32,14 @@ const decideHamburgerColor = ({mode}) => {
 
 const Hamburger = ({className, opened, handleClick}) => {
   const {mode} = useRecoilValue(themeState);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsClient(true);
+    }
+  }, []);
+
   return (
     <div className={cx(css``, className)}>
       <div
@@ -68,7 +77,7 @@ const Hamburger = ({className, opened, handleClick}) => {
                 align-items: center;
               `,
               'hamburger-box',
-              decideHamburgerColor({mode})
+              isClient && decideHamburgerColor({mode})
             )}
           >
             <span
