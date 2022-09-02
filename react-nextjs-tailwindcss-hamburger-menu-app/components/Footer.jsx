@@ -23,7 +23,7 @@ const Footer = () => {
       )}
     >
       <div
-        className={`flex items-center gap-1`}
+        className={`flex items-center gap-1 hover:cursor-pointer`}
         onClick={(e) => {
           router.push({
             pathname: '/',

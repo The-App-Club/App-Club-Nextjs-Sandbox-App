@@ -74,7 +74,7 @@ const CowboyBebop = ({Component, pageProps}) => {
             setOpened={setOpened}
           />
           <Header opened={opened} handleClick={handleClick} />
-          <main>
+          <main className="min-h-screen">
             <article>
               <Component {...pageProps} notifier={doAutoCloseSideBar} />
             </article>

@@ -88,7 +88,7 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
         },
       });
     }
-  }, [opened, setIsTrigger]);
+  }, [opened, setIsTrigger, controls]);
 
   return (
     <motion.nav
