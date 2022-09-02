@@ -5,8 +5,8 @@ import {useRecoilState} from 'recoil';
 import themeState from '../stores/themeStore';
 
 const ThemeToggle = ({className}) => {
-  const [checked, setChecked] = useState(false);
   const [theme, setTheme] = useRecoilState(themeState);
+  const [checked, setChecked] = useState(theme.checked);
 
   const handleChange = (e) => {
     setChecked(e.target.checked);
@@ -14,12 +14,12 @@ const ThemeToggle = ({className}) => {
       const html = document.documentElement;
       html.classList.remove('light');
       html.classList.add('dark');
-      setTheme('dark');
+      setTheme({mode: 'dark', checked: true});
     } else {
       const html = document.documentElement;
       html.classList.remove('dark');
       html.classList.add('light');
-      setTheme('light');
+      setTheme({mode: 'light', checked: false});
     }
   };
 

@@ -3,8 +3,9 @@ import 'hamburgers/dist/hamburgers.css';
 import {useRecoilValue} from 'recoil';
 import themeState from '../stores/themeStore';
 
-const decideHamburgerColor = ({theme}) => {
-  if (theme === `dark`) {
+const decideHamburgerColor = ({mode}) => {
+  if (mode === `dark`) {
+    console.log(`a`);
     return css`
       .hamburger-inner,
       .hamburger-inner::before,
@@ -30,8 +31,8 @@ const decideHamburgerColor = ({theme}) => {
 };
 
 const Hamburger = ({className, opened, handleClick}) => {
-  const theme = useRecoilValue(themeState);
-
+  const {mode} = useRecoilValue(themeState);
+  console.log(`mode`, mode);
   return (
     <div className={cx(css``, className)}>
       <div
@@ -69,7 +70,7 @@ const Hamburger = ({className, opened, handleClick}) => {
                 align-items: center;
               `,
               'hamburger-box',
-              decideHamburgerColor({theme})
+              decideHamburgerColor({mode})
             )}
           >
             <span

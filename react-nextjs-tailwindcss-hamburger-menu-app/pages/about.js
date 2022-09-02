@@ -2,9 +2,9 @@ import {css, cx} from '@emotion/css';
 import Link from 'next/link';
 import Layout from '../layouts/default';
 
-const About = () => {
+const About = ({notifier}) => {
   return (
-    <Layout className={`mt-12`}>
+    <Layout className={`mt-12`} notifier={notifier}>
       <section
         className={cx(
           `max-w-7xl mx-auto w-full`,

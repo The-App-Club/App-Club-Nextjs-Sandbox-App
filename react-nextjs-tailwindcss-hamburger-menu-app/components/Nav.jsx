@@ -9,7 +9,6 @@ import {BiTimeFive} from 'react-icons/bi';
 import {RiAdvertisementLine} from 'react-icons/ri';
 import Link from 'next/link';
 
-import {useHamburger} from '../hooks/useHamburger';
 import {useClickOutside} from '../hooks/useClickOutside';
 import Hamburger from './Hamburger';
 import {useRecoilValue} from 'recoil';
@@ -61,10 +60,6 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
       setOpened(false);
     }
   });
-
-  useEffect(() => {
-    console.log(`[Nav]opened`, opened);
-  }, [opened]);
 
   useEffect(() => {
     if (opened) {

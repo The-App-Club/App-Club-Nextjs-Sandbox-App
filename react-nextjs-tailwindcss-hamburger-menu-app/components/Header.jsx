@@ -2,20 +2,11 @@ import {css, cx} from '@emotion/css';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useCallback, useEffect, useState} from 'react';
-import {useHamburger} from '../hooks/useHamburger';
 import Hamburger from './Hamburger';
-import Nav from './Nav';
 import ThemeToggle from './ThemeToggle';
 
-const Header = () => {
+const Header = ({opened, handleClick}) => {
   const router = useRouter();
-  const {isTrigger, setIsTrigger, opened, setOpened, handleClick} =
-    useHamburger();
-
-  useEffect(() => {
-    console.log(`[Header]opened`, opened);
-  }, [opened]);
-
   return (
     <header
       className={cx(
@@ -47,13 +38,6 @@ const Header = () => {
           <Hamburger opened={opened} handleClick={handleClick} />
         </div>
       </div>
-      <Nav
-        isTrigger={isTrigger}
-        handleClick={handleClick}
-        opened={opened}
-        setIsTrigger={setIsTrigger}
-        setOpened={setOpened}
-      />
     </header>
   );
 };

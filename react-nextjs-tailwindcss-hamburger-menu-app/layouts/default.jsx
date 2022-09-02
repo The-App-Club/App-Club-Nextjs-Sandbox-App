@@ -39,7 +39,9 @@ const Layout = ({children, className, notifier}) => {
       }}
       variants={motionConfig}
       onAnimationStart={(e) => {}}
-      onAnimationComplete={(e) => {}}
+      onAnimationComplete={(e) => {
+        notifier();
+      }}
     >
       {children}
     </motion.div>
