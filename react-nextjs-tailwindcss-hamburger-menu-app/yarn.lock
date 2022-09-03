@@ -486,6 +486,14 @@
   dependencies:
     tslib "^2.4.0"
 
+"@tidyjs/tidy@^2.5.1":
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/@tidyjs/tidy/-/tidy-2.5.1.tgz#c969d7b3651674dfe3dc2e5d8a40a8b79c78e18c"
+  integrity sha512-T4LFjrkEq/sQjwuxLzbn/klwr2NNl8IFH9xAAGu7/pihR8GKXT9QOOHLEwqcjCi1zKgR6dgkI01DWlndITaAfg==
+  dependencies:
+    d3-array "^2.9.1"
+    ts-toolbelt "^8.0.7"
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
@@ -954,6 +962,13 @@ csstype@^3.0.2, csstype@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
+
+d3-array@^2.9.1:
+  version "2.12.1"
+  resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-2.12.1.tgz#e20b41aafcdffdf5d50928004ececf815a465e81"
+  integrity sha512-B0ErZK/66mHtEsR1TkPEEkwdy+WDesimkM5gpZr5Dsg54BiTA5RXtYW5qTLIAcekaS9xfZrzBLF/OAkB3Qn1YQ==
+  dependencies:
+    internmap "^1.0.0"
 
 damerau-levenshtein@^1.0.8:
   version "1.0.8"
@@ -1696,6 +1711,11 @@ internal-slot@^1.0.3:
     get-intrinsic "^1.1.0"
     has "^1.0.3"
     side-channel "^1.0.4"
+
+internmap@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/internmap/-/internmap-1.0.1.tgz#0017cc8a3b99605f0302f2b198d272e015e5df95"
+  integrity sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -2713,6 +2733,11 @@ to-regex-range@^5.0.1:
   integrity sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==
   dependencies:
     is-number "^7.0.0"
+
+ts-toolbelt@^8.0.7:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-8.4.0.tgz#af6e64b87be3e097fac63600ce9556e78542fa27"
+  integrity sha512-hnGJXIgC49ZuF5g5oDthoge8t4cvT0dYg2pYO5C6yV/HmUUy1koooU2U/5K2N+Uw++hcXQpJAToLRa+GRp28Sg==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"

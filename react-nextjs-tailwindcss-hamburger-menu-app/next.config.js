@@ -7,6 +7,7 @@ const nextConfig = {
       unoptimized: true,
     },
   },
+  trailingSlash: true, // https://stackoverflow.com/a/44264855
 };
 
 module.exports = nextConfig;

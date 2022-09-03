@@ -24,6 +24,9 @@ const Home = ({notifier}) => {
         <Link href={'/'}>
           <a className="hover:underline">Back to home</a>
         </Link>
+        <Link href={'/wines'}>
+          <a className="hover:underline">Go to wines</a>
+        </Link>
       </section>
     </Layout>
   );

@@ -15,6 +15,14 @@
       {
         "source": "/price",
         "destination": "/price.html"
+      },
+      {
+        "source": "/wines",
+        "destination": "/wines.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }
