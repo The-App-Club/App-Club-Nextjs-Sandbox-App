@@ -67,8 +67,11 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
     controls.set({
       opacity: 1,
     });
+    const html = document.documentElement;
+    const body = document.body;
     if (opened) {
-      document.body.classList.add('loading');
+      html.classList.add('loading');
+      body.classList.add('loading');
       gsap.to(navContainerDomRef.current, {
         x: `0%`,
         duration: 0.6,
@@ -78,7 +81,8 @@ const Nav = ({isTrigger, setIsTrigger, opened, setOpened, handleClick}) => {
         },
       });
     } else {
-      document.body.classList.remove('loading');
+      html.classList.remove('loading');
+      body.classList.remove('loading');
       gsap.to(navContainerDomRef.current, {
         x: `100%`,
         duration: 0.6,
