@@ -1,11 +1,10 @@
+import Header from '@/components/Header';
 import {css, cx} from '@emotion/css';
 
 export default function Home() {
   return (
     <div>
-      <header className="fixed top-0 min-h-[3rem] w-full border-2 bg-white z-10 flex items-center justify-center shadow-md">
-        Header
-      </header>
+      <Header />
       <main
         className={css`
           position: relative;
