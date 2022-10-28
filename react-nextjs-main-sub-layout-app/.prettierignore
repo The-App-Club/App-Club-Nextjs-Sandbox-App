@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+.firebase*
+.gitignore
+.eslintignore
+.prettierignore
+.stylelintignore
+*svg
+*png
+*ico
+.env
+.env.development
+.env.production
+yarn.lock
+.gitkeep
