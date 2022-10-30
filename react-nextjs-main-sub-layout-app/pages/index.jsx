@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Container from '@/components/home/Container';
 import SectionHeader from '@/components/home/SectionHeader';
 import Sidebar from '@/components/home/Sidebar';
-import Layout from '@/layouts/default';
+import SidebarSp from '@/components/SidebarSp';
 import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
 const motionConfig = {
@@ -25,13 +25,14 @@ const motionConfig = {
 };
 export default function Home() {
   return (
-    <Layout>
+    <>
       <Sidebar />
+      {/* <SidebarSp /> */}
       <motion.section
         className={cx(
           'mt-12',
           css`
-            position: relative;
+            position: absolute;
             top: 0;
             left: 320px;
             max-width: calc(100% - 320px);
@@ -58,6 +59,6 @@ export default function Home() {
         <SectionHeader />
         <Container />
       </motion.section>
-    </Layout>
+    </>
   );
 }

@@ -1,7 +1,6 @@
 import Container from '@/components/event/Container';
 import SectionHeader from '@/components/event/SectionHeader';
 import Sidebar from '@/components/event/Sidebar';
-import Layout from '@/layouts/default';
 import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
 const motionConfig = {
@@ -23,13 +22,13 @@ const motionConfig = {
 };
 const Event = () => {
   return (
-    <Layout>
+    <>
       <Sidebar />
       <motion.section
         className={cx(
           'mt-12',
           css`
-            position: relative;
+            position: absolute;
             top: 0;
             left: 320px;
             max-width: calc(100% - 320px);
@@ -56,7 +55,7 @@ const Event = () => {
         <SectionHeader />
         <Container />
       </motion.section>
-    </Layout>
+    </>
   );
 };
 
