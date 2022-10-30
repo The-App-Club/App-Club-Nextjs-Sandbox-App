@@ -101,7 +101,7 @@ const SidebarSp = () => {
       });
       gsap.to(backdropLayerDomRef.current, {
         opacity: 0,
-        zIndex: 0,
+        zIndex: -1,
         duration: 0.1,
         ease: Power3.easeOut,
       });
@@ -110,10 +110,10 @@ const SidebarSp = () => {
 
   return (
     <>
-      {/* <div
+      <div
         ref={backdropLayerDomRef}
         className="w-screen min-h-screen fixed inset-0 bg-slate-600/70 opacity-0"
-      /> */}
+      />
       <motion.aside
         ref={containerDomRef}
         className={cx(
