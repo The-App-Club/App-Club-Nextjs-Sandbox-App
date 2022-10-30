@@ -27,7 +27,7 @@ const Custom404 = () => {
   return (
     <>
       <Sidebar />
-      {/* <SidebarSp /> */}
+      <SidebarSp />
       <motion.section
         className={cx(
           'mt-12',

@@ -1,6 +1,7 @@
 import Container from '@/components/shop/Container';
 import SectionHeader from '@/components/shop/SectionHeader';
 import Sidebar from '@/components/shop/Sidebar';
+import SidebarSp from '@/components/SidebarSp';
 import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
 const motionConfig = {
@@ -24,6 +25,7 @@ const Shop = () => {
   return (
     <>
       <Sidebar />
+      <SidebarSp />
       <motion.section
         className={cx(
           'mt-12',

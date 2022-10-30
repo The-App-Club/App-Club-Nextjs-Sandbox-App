@@ -9,7 +9,14 @@ const Header = () => {
   const router = useRouter();
   return (
     <motion.header
-      className={`fixed top-0 min-h-[3rem] w-full border-2 bg-white z-20 flex items-center justify-center shadow-md`}
+      className={cx(
+        `fixed top-0 min-h-[3rem] w-full border-2 bg-white z-20 flex items-center justify-center shadow-md`,
+        css`
+          position: fixed;
+          top: 0;
+          z-index: 4;
+        `
+      )}
     >
       <div className="relative w-full flex items-center gap-2">
         <Hamburger

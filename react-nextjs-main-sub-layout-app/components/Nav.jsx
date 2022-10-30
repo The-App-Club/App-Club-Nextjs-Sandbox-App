@@ -2,14 +2,9 @@ import {css, cx} from '@emotion/css';
 import {motion} from 'framer-motion';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
-import {BiHome} from 'react-icons/bi';
-import {GiGrapes, GiWineBottle} from 'react-icons/gi';
-import {
-  MdFavoriteBorder,
-  MdOutlineLocationOn,
-  MdOutlineShoppingCart,
-  MdRssFeed,
-} from 'react-icons/md';
+import {BsShop} from 'react-icons/bs';
+import {BsCalendarEvent} from 'react-icons/bs';
+import {AiOutlineHome} from 'react-icons/ai';
 import {useRecoilState} from 'recoil';
 
 import sidebarState from '@/stores/sidebarStore';
@@ -79,7 +74,21 @@ const Nav = () => {
           path={'/'}
           menuTitle={'Home'}
           icon={() => {
-            return <BiHome size={24} />;
+            return <AiOutlineHome size={24} />;
+          }}
+        />
+        <MenuItem
+          path={'/shop'}
+          menuTitle={'Shop'}
+          icon={() => {
+            return <BsShop size={24} />;
+          }}
+        />
+        <MenuItem
+          path={'/event'}
+          menuTitle={'Event'}
+          icon={() => {
+            return <BsCalendarEvent size={24} />;
           }}
         />
       </motion.ul>
