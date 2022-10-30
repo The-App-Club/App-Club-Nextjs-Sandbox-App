@@ -9,7 +9,7 @@ import {useRecoilState} from 'recoil';
 
 import sidebarState from '@/stores/sidebarStore';
 
-const attachActiveMenu = ({activeMenuName, menuTitle}) => {
+export const attachActiveMenu = ({activeMenuName, menuTitle}) => {
   if (activeMenuName === menuTitle) {
     return `border-blue-900 dark:border-yellow-300`;
   }

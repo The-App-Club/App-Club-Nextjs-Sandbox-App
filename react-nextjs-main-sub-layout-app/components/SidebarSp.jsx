@@ -140,8 +140,7 @@ const SidebarSp = () => {
             flex-direction: column;
           `,
           `scrollbar-none`,
-          `bg-white dark:bg-slate-700 dark:text-white z-20`,
-          `border-r-2`
+          `bg-white dark:bg-slate-700 dark:text-white z-20`
         )}
       >
         <motion.div

@@ -3,6 +3,41 @@ import {useRouter} from 'next/router';
 import {BsShop} from 'react-icons/bs';
 import {BsCalendarEvent} from 'react-icons/bs';
 import {AiOutlineHome} from 'react-icons/ai';
+import sidebarState from '@/stores/sidebarStore';
+import {useRecoilState} from 'recoil';
+import {useEffect, useState} from 'react';
+import {attachActiveMenu} from '@/components/Nav';
+
+const MenuItem = ({path, menuTitle, icon}) => {
+  const router = useRouter();
+  const [sidebar, setSidebar] = useRecoilState(sidebarState);
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsClient(true);
+    }
+  }, []);
+
+  return (
+    <div
+      className={cx(
+        'flex items-center flex-col gap-1 p-2',
+        `border-r-8`,
+        `hover:cursor-pointer hover:bg-gray-100 dark:hover:bg-slate-800`,
+        isClient &&
+          attachActiveMenu({activeMenuName: sidebar.activeMenuName, menuTitle})
+      )}
+      onClick={(e) => {
+        router.push({
+          pathname: path,
+        });
+      }}
+    >
+      {icon()}
+      <h4>{menuTitle}</h4>
+    </div>
+  );
+};
 
 const MainSidebar = () => {
   const router = useRouter();
@@ -20,39 +55,27 @@ const MainSidebar = () => {
         `
       )}
     >
-      <div
-        className="flex items-center flex-col gap-1 hover:cursor-pointer hover:bg-gray-100 p-2"
-        onClick={(e) => {
-          router.push({
-            pathname: `/`,
-          });
+      <MenuItem
+        path={`/`}
+        menuTitle={`Home`}
+        icon={() => {
+          return <AiOutlineHome size={24} />;
         }}
-      >
-        <AiOutlineHome size={24} />
-        <h4>Home</h4>
-      </div>
-      <div
-        className="flex items-center flex-col gap-1 hover:cursor-pointer hover:bg-gray-100 p-2"
-        onClick={(e) => {
-          router.push({
-            pathname: `/shop`,
-          });
+      />
+      <MenuItem
+        path={`/shop`}
+        menuTitle={`Shop`}
+        icon={() => {
+          return <BsShop size={24} />;
         }}
-      >
-        <BsShop size={24} />
-        <h4>Shop</h4>
-      </div>
-      <div
-        className="flex items-center flex-col gap-1 hover:cursor-pointer hover:bg-gray-100 p-2"
-        onClick={(e) => {
-          router.push({
-            pathname: `/event`,
-          });
+      />
+      <MenuItem
+        path={`/event`}
+        menuTitle={`Event`}
+        icon={() => {
+          return <BsCalendarEvent size={24} />;
         }}
-      >
-        <BsCalendarEvent size={24} />
-        <h4>Event</h4>
-      </div>
+      />
     </div>
   );
 };
