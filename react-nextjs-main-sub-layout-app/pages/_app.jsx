@@ -6,6 +6,7 @@ import {RecoilRoot, useRecoilState, useRecoilValue} from 'recoil';
 
 import SEO from '@/components/SEO'; // eslint-disable-line
 
+import '@fontsource/inter';
 import '@/styles/index.css';
 import '@/styles/index.scss';
 
