@@ -1,0 +1,17 @@
+[
+  {
+    "id": "clca39f5f0000356vwljsslz8",
+    "name": "User 1",
+    "email": "sample+user1@example.com"
+  },
+  {
+    "id": "clca39f5g0001356vy0w2ivfc",
+    "email": "sample+user2@example.com",
+    "name": "User 2"
+  },
+  {
+    "id": "clca39f5g0002356vzsivxcmb",
+    "email": "sample+user3@example.com",
+    "name": "User 3"
+  }
+]

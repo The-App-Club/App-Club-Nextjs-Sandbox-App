@@ -1,0 +1,12 @@
+.next
+out
+.gitignore
+.eslintignore
+.prettierignore
+.dockerignore
+.gitkeep
+*svg
+*png
+*ico
+.env*
+yarn.lock
