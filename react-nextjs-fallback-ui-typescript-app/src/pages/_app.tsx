@@ -13,17 +13,17 @@ import NextNProgress from 'nextjs-progressbar'
 import { Toaster } from 'react-hot-toast'
 import { RecoilRoot } from 'recoil'
 
-import Header from '@/components/ui/Header'
 import createEmotionCache from '@/config/createEmotionCache'
 import { sealLog } from '@/config/log'
 import { matchedActivePage } from '@/config/routes'
 import theme from '@/config/theme'
+import { AuthLayout } from '@/layouts/AuthLayout'
 import { queryClient } from '@/libs/queryClient'
 import useHeaderMenu from '@/libs/useHeaderMenu'
 
 sealLog()
 
-interface AWAppProps extends AppProps {
+interface BebopAppProps extends AppProps {
   emotionCache?: EmotionCache
 }
 
@@ -31,7 +31,7 @@ const MyApp = ({
   Component,
   pageProps,
   emotionCache = createEmotionCache(),
-}: AWAppProps) => {
+}: BebopAppProps) => {
   const router = useRouter()
   const { setHeaderMenu } = useHeaderMenu()
 
@@ -64,15 +64,16 @@ const MyApp = ({
         <CacheProvider value={emotionCache}>
           <Toaster position='bottom-left' reverseOrder={false} />
           <CssBaseline />
-          <Header />
-          <Component {...pageProps} />
+          <AuthLayout>
+            <Component {...pageProps} />
+          </AuthLayout>
         </CacheProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )
 }
 
-const AWApp = (props: AWAppProps) => {
+const BebopApp = (props: BebopAppProps) => {
   return (
     <RecoilRoot>
       <NextNProgress
@@ -87,4 +88,4 @@ const AWApp = (props: AWAppProps) => {
   )
 }
 
-export default AWApp
+export default BebopApp

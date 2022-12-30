@@ -7,11 +7,10 @@ import { NextPage } from 'next'
 
 import { default as ErrorBoundary } from '@/components/fallback/ErrorBoundary'
 import { FallbackLoading } from '@/components/fallback/FallbackLoading'
-import { AuthLayout } from '@/layouts/AuthLayout'
 
-const HomePage = lazy(() => import('@/features/home/components/Home'))
+const Home = lazy(() => import('@/features/home/components/Home'))
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <ErrorBoundary>
       <Suspense
@@ -28,12 +27,10 @@ const Home: NextPage = () => {
           </Box>
         }
       >
-        <AuthLayout>
-          <HomePage />
-        </AuthLayout>
+        <Home />
       </Suspense>
     </ErrorBoundary>
   )
 }
 
-export default Home
+export default HomePage
